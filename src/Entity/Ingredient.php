@@ -16,7 +16,7 @@ class Ingredient
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Assert\length(min: 2, max: 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $name = null;
 
     #[ORM\Column]
@@ -28,6 +28,11 @@ class Ingredient
     #[ORM\Column]
     #[Assert\NotNull()]
     private ?\DateTimeImmutable $createdAt = null;
+
+    public function __construct()
+    {   
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
