@@ -10,6 +10,7 @@ use Faker\Generator;
 
 class AppFixtures extends Fixture
 {   
+    //Creer un attribut pour faker
     private Generator $faker;
 
     public function __construct()
@@ -20,13 +21,16 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {   
         for ($i=0; $i <= 49; $i++) { 
+            //Creer un instance de l'entité
             $ingredient = new Ingredient();
+            //Affectation ou setters de notre proprieté
             $ingredient->setName($this->faker->word());
             $ingredient->setPrice(mt_rand(0, 100));
 
+            //Persistance de notre instance avec manager Objectmanager
             $manager->persist($ingredient);
         }
-        
+        //Flusher notre instance
         $manager->flush();
     }
 }
